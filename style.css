@@ -1,0 +1,320 @@
+:root {
+	--content-width: 70ch;
+	--root-font-size: clamp(max(1em, 20px), 1.2em + 0.5vw, 2em);
+
+	--foreground: oklch(0.413 0 0);
+	--background: oklch(0.985 0 0);
+	--accent: oklch(0.4664 0.3232 264.05);
+	--error: oklch(0.48 0.22 26.272);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	color-scheme: light dark;
+	max-inline-size: var(--content-width);
+	padding-block: 3em;
+	padding-inline: 1em;
+	margin: auto;
+	line-height: 1.75;
+	font-size: var(--root-font-size);
+	font-family: system-ui, sans-serif;
+}
+
+body {
+	color: var(--foreground);
+	background-color: var(--background);
+}
+
+hr {
+	margin-block: 2em;
+}
+
+h1 {
+	line-height: 1;
+	margin: 0;
+	margin-block-end: 1em;
+}
+
+h2 {
+	line-height: 1;
+	margin: 0;
+}
+
+button[type="submit"] {
+	display: block;
+	border: none;
+	color: var(--background);
+	background: var(--foreground);
+	font: inherit;
+	line-height: 1;
+	padding: 0.5em 1em;
+	margin-block-start: 2em;
+	cursor: pointer;
+}
+
+fieldset {
+	margin: 0 0.5em 1em 0.5em;
+	border: 0.1em solid;
+	max-inline-size: fit-content;
+}
+
+fieldset:not([role="radiogroup"]) {
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+
+fieldset[role="radiogroup"] legend {
+	margin-block-end: -0.85em;
+}
+
+fieldset.label-wrapper > legend {
+	margin-block-end: -0.125em;
+}
+
+fieldset.label-wrapper > .input-wrapper-term-years {
+	margin-block-start: 0.5em;
+}
+
+label, p {
+	margin: 0;
+}
+
+label {
+	margin-inline-end: 0.25em;
+}
+
+.label-wrapper {
+	margin: 0.25em 0;
+	line-height: 1.4;
+}
+
+
+/* Text fields */
+
+input:not(
+		[type="checkbox"],
+		[type="file"],
+		[type="image"],
+		[type="radio"],
+		[type="range"]
+	) {
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	word-spacing: inherit;
+	border: 0.1em solid;
+	padding: 0 0.2em;
+}
+
+/* Focus */
+
+input:not(
+		[type="checkbox"],
+		[type="file"],
+		[type="image"],
+		[type="radio"],
+		[type="range"]
+	):focus-visible {
+	outline: 0.15em solid var(--accent);
+	box-shadow: 0 0 0.2em var(--accent);
+}
+
+/* Errored */
+
+input:not(
+		[type="checkbox"],
+		[type="file"],
+		[type="image"],
+		[type="radio"],
+		[type="range"]
+	)[aria-invalid] {
+	background: linear-gradient(
+		135deg,
+		var(--error) 0,
+		var(--error) 0.4em,
+		var(--background) 0.4em
+	);
+}
+
+/* RTL Errored */
+
+*[dir="rtl"]
+	input:not(
+		[type="checkbox"],
+		[type="file"],
+		[type="image"],
+		[type="radio"],
+		[type="range"]
+	)[aria-invalid] {
+	background: linear-gradient(
+		225deg,
+		var(--error) 0,
+		var(--error) 0.4em,
+		var(--background) 0.4em
+	);
+}
+
+/* Required */
+
+fieldset[role="radiogroup"][aria-required="true"] {
+	border: 0.1em solid;
+	border-inline-start-width: 0.3em;
+	margin: 0;
+}
+
+.input-wrapper:has(input:not(
+		[type="checkbox"],
+		[type="file"],
+		[type="image"],
+		[type="radio"],
+		[type="range"]
+	)[required]) {
+	border: 0 solid;
+	border-inline-start-width: 0.3em;
+}
+
+/* Help text and required */
+
+.help-text, .required {
+	color: oklch(0.5032 0 0);
+	font-size: 0.9em;
+}
+
+.required {
+	display: inline;
+}
+
+/* Error text */
+
+.error-text {
+	color: var(--error);
+	display: none;
+}
+
+/* Text input wrapper with suffix and prefix */
+
+.input-wrapper {
+	display: grid;
+	grid-template-columns: auto 5ch auto;
+	grid-template-areas: "prefix input suffix";
+	max-inline-size: fit-content;
+	margin-block-end: 1em;
+}
+
+.input-wrapper-principal {
+	grid-template-columns: auto 10ch auto;
+}
+
+.input-wrapper:has(+ .input-wrapper) {
+	margin-block-end: 0.25em;
+}
+
+.input-wrapper input {
+	grid-area: input;
+	inline-size: 100%;
+}
+
+.input-prefix,
+.input-suffix {
+	border-block: 0.1em solid;
+	padding: 0 0.2em;
+}
+
+.input-prefix {
+	border-inline-start: 0.1em solid;
+	grid-area: prefix;
+}
+
+.input-suffix {
+	border-inline-end: 0.1em solid;
+	grid-area: suffix;
+}
+
+/* Radio */
+
+input[type="radio"] {
+	--_size: 2em;
+	inline-size: var(--_size);
+	block-size: var(--_size);
+	margin: 0;
+	margin-inline-end: 0.25em;
+	accent-color: var(--accent);
+}
+
+input[type="radio"]:focus-visible {
+	outline: 0.15em solid var(--accent);
+}
+
+/* Dark mode */
+
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--foreground: oklch(0.985 0 0);
+		--background: oklch(0.235 0 0);
+		--accent: oklch(0.8929 0.2057 193.14);
+		--error: oklch(0.6608 0.2855 25.561);
+	}
+
+	input:not(
+			[type="checkbox"],
+			[type="file"],
+			[type="image"],
+			[type="radio"],
+			[type="range"]
+		) {
+		background-color: transparent;
+		color: inherit;
+		border-color: var(--foreground);
+	}
+
+	input:not(
+			[type="checkbox"],
+			[type="file"],
+			[type="image"],
+			[type="radio"],
+			[type="range"]
+		):focus-visible {
+		outline-color: var(--accent);
+		box-shadow: 0 0 0.2em var(--accent);
+	}
+
+	fieldset[aria-invalid],
+	input:not(
+			[type="checkbox"],
+			[type="file"],
+			[type="image"],
+			[type="radio"],
+			[type="range"]
+		)[aria-invalid] {
+		background: linear-gradient(
+			135deg,
+			var(--error) 0,
+			var(--error) 0.3em,
+			var(--background) 0.3em
+		);
+	}
+
+	*[dir="rtl"]
+		input:not(
+			[type="checkbox"],
+			[type="file"],
+			[type="image"],
+			[type="radio"],
+			[type="range"]
+		)[aria-invalid] {
+		background: linear-gradient(
+			225deg,
+			var(--error) 0,
+			var(--error) 0.3em,
+			var(--background) 0.3em
+		);
+	}
+
+	.help-text {
+		color: oklch(0.764 0 0);
+	}
+}

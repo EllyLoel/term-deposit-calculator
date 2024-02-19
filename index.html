@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Term deposit calculator</title>
+		<link rel="stylesheet" href="style.css" />
+		<meta name="color-scheme" content="light dark" />
+		<meta name="theme-color" content="#fafafa" />
+		<script defer src="term-deposit-calculator.js"></script>
+	</head>
+
+	<body>
+		<form novalidate>
+			<fieldset>
+				<legend>
+					<h1>Term deposit calculator</h1>
+				</legend>
+				<div>
+					<div class="label-wrapper">
+						<label for="principal">What is the starting deposit amount in dollars?</label>
+						<p class="required" aria-hidden="true">(required)</p>
+						<p id="principal-help-text" class="help-text">For example, $10,000</p>
+						<p id="principal-error" class="error-text">Enter a starting deposit number</p>
+					</div>
+					<div class="input-wrapper input-wrapper-principal">
+						<span class="input-prefix" aria-hidden="true">$</span>
+						<input
+							type="text"
+							inputmode="numeric"
+							spellcheck="false"
+							id="principal"
+							name="principal"
+							aria-describedby="principal-help-text"
+							required
+						>
+					</div>
+				</div>
+				<div>
+					<div class="label-wrapper">
+						<label for="interest-rate">What is the interest rate percentage?</label>
+						<p class="required" aria-hidden="true">(required)</p>
+						<p id="interest-rate-help-text" class="help-text">For example, 1.10%</p>
+						<p id="interest-rate-error" class="error-text">Enter an interest rate number</p>
+					</div>
+					<div class="input-wrapper input-wrapper-interest-rate">
+						<input
+							type="text"
+							inputmode="numeric"
+							spellcheck="false"
+							id="interest-rate"
+							name="interest-rate"
+							aria-describedby="interest-rate-help-text"
+							required
+						>
+						<span class="input-suffix" aria-hidden="true">%</span>
+					</div>
+				</div>
+				<div>
+					<fieldset class="label-wrapper" aria-describedby="term-help-text">
+						<legend>How long will the investment term be in years and months?</legend>
+						<p class="required" aria-hidden="true">(required)</p>
+						<p id="term-help-text" class="help-text">For example, 3 years and 0 months</p>
+						<p id="term-error" class="error-text">Enter a number of years and/or months</p>
+						<div class="input-wrapper input-wrapper-term-years">
+							<input
+								type="text"
+								inputmode="numeric"
+								spellcheck="false"
+								id="term-years"
+								name="term-years"
+								required
+							>
+							<label for="term-years" class="input-suffix">years</label>
+						</div>
+						<div class="input-wrapper input-wrapper-term-months">
+							<input
+								type="text"
+								inputmode="numeric"
+								spellcheck="false"
+								id="term-months"
+								name="term-months"
+								required
+							>
+							<label for="term-months" class="input-suffix">months</label>
+						</div>
+					</fieldset>
+				</div>
+				<fieldset role="radiogroup" aria-required="true" id="interest-payment-frequency-radiogroup">
+					<p class="required" aria-hidden="true">(required)</p>
+					<legend>How frequently is interest paid?</legend>
+					<p id="interest-payment-frequency-error" class="error-text">Select an interest payment frequency</p>
+					<div class="radio-wrapper">
+						<input type="radio" id="monthly" value="monthly" name="interest-payment-frequency">
+						<label for="monthly">Monthly</label>
+					</div>
+					<div class="radio-wrapper">
+						<input type="radio" id="quarterly" value="quarterly" name="interest-payment-frequency">
+						<label for="quarterly">Quarterly</label>
+					</div>
+					<div class="radio-wrapper">
+						<input type="radio" id="annually" value="annually" name="interest-payment-frequency">
+						<label for="annually">Annually</label>
+					</div>
+					<div class="radio-wrapper">
+						<input type="radio" id="at-maturity" value="at-maturity" name="interest-payment-frequency">
+						<label for="at-maturity">At Maturity</label>
+					</div>
+				</fieldset>
+			</fieldset>
+			<button type="submit">Calculate</button>
+		</form>
+		<hr>
+		<section>
+			<h2>Final balance</h2>
+			<p id="final-balance">$0</p>
+		</section>
+	</body>
+</html>
